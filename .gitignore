@@ -6,6 +6,7 @@
 build/
 app/app.iml
 gradle.properties
+my.properties
 gradle/
 gradlew
 gradlew.bat

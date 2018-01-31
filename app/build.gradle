@@ -4,6 +4,16 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+Properties props = new Properties()
+def propFile = file('../my.properties')   //pay attention to the path
+def umengAppKey
+if (propFile.canRead()){
+    props.load(new FileInputStream(propFile))
+    if (props!=null && props.containsKey('umeng.appkey')) {
+        umengAppKey = props['umeng.appkey']
+    }
+}
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -13,9 +23,22 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "boolean", "LOG_DEBUG", "true"
+
+        manifestPlaceholders = [
+                UMENG_APPKEY: umengAppKey,
+                UMENG_CHANNEL_ID:"google_play"
+        ]
     }
     buildTypes {
         release {
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -30,4 +53,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    // UMeng统计
+    compile 'com.umeng.analytics:analytics:latest.integration'
 }

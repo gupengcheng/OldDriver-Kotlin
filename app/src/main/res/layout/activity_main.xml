@@ -1,22 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="@dimen/actionbar_height"
+        android:orientation="horizontal"
+        android:theme="@style/ActionbarStyle">
 
-        <Button
-            android:id="@+id/btnSplashScreen"
+        <TextView
+            android:id="@+id/tvActionbarLeft"
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/main_actionbar_left"
+            android:theme="@style/TextCommon"/>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabMain"
+            style="@style/TabLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="返回SplashScreen"
-            android:textColor="@color/colorPrimary"/>
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tvActionbarRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/main_actionbar_right"
+            android:theme="@style/TextCommon"/>
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_height"
+        android:background="@color/actionbar_bg"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/shape_main_search"
+            android:gravity="center_vertical"
+            android:text="@string/main_search_hint"
+            android:textColor="@color/actionbar_tab_text_unselect"
+            android:theme="@style/TextCommon"/>
+
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpagerMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

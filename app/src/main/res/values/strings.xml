@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">OldDriver</string>
+    <string name="main_actionbar_left">菜单</string>
+    <string name="main_actionbar_right">拍照</string>
+    <string name="main_search_hint">搜索笔记、商品和用户</string>
+
+    <string-array name="main_tab">
+        <item>关注</item>
+        <item>发现</item>
+        <item>商城</item>
+    </string-array>
 </resources>

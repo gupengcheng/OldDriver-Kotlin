@@ -29,7 +29,10 @@ class SplashScreenActivity : BaseActivity() {
     }
 
     override fun configView() {
-        Handler().postDelayed(Runnable { MainActivity.startActivity(mContext) }, 3000)
+        Handler().postDelayed(Runnable {
+            MainActivity.startActivity(mContext)
+            finish()
+        }, 3000)
     }
 
     override fun requestServerData() {

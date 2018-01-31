@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="actionbar_bg">#FFFEFF</color>
+    <color name="actionbar_tab_text_select">#000000</color>
+    <color name="actionbar_tab_text_unselect">#919192</color>
+    <color name="actionbar_indicator_color">#FC0000</color>
+    <color name="main_search_bg">#F5F5F6</color>
+
+    <color name="transparent">#00000000</color>
+
 </resources>

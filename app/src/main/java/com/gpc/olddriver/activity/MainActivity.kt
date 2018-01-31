@@ -2,9 +2,12 @@ package com.gpc.olddriver.activity
 
 import android.content.Context
 import android.content.Intent
-import android.view.View
 import com.gpc.olddriver.R
 import com.gpc.olddriver.base.BaseFragmentActivity
+import com.gpc.olddriver.view.adapter.MainAdapter
+import com.gpc.olddriver.view.fragment.MainFirFragment
+import com.gpc.olddriver.view.fragment.MainSecFragment
+import com.gpc.olddriver.view.fragment.MainThirFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -14,6 +17,9 @@ class MainActivity : BaseFragmentActivity() {
 
     override val TAG: String
         get() = "首页"
+
+    var mMainAdapter: MainAdapter? = null
+    var mTabList: List<String>? = null
 
     companion object {
         fun startActivity(context: Context? = null) {
@@ -28,11 +34,22 @@ class MainActivity : BaseFragmentActivity() {
     }
 
     override fun initParentData() {
-
+        val tabArray = resources.getStringArray(R.array.main_tab)
+        mTabList = tabArray.asList()
     }
 
     override fun configView() {
-        btnSplashScreen.setOnClickListener(View.OnClickListener { SplashScreenActivity.startActivity(mContext) })
+        mMainAdapter = MainAdapter(supportFragmentManager)
+        viewpagerMain.adapter = mMainAdapter
+        tabMain.setupWithViewPager(viewpagerMain)
+
+        mTabList?.forEachIndexed { index, s ->
+            when {
+                index == 0 -> mMainAdapter?.addFragment(s, MainFirFragment.newInstance())
+                index == 1 -> mMainAdapter?.addFragment(s, MainSecFragment.newInstance())
+                index == 2 -> mMainAdapter?.addFragment(s, MainThirFragment.newInstance())
+            }
+        }
     }
 
     override fun requestServerData() {

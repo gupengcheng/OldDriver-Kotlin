@@ -5,9 +5,9 @@ import android.content.Intent
 import com.gpc.olddriver.R
 import com.gpc.olddriver.base.BaseFragmentActivity
 import com.gpc.olddriver.view.adapter.MainAdapter
-import com.gpc.olddriver.view.fragment.MainFirFragment
-import com.gpc.olddriver.view.fragment.MainSecFragment
-import com.gpc.olddriver.view.fragment.MainThirFragment
+import com.gpc.olddriver.view.fragment.main.MainFirFragment
+import com.gpc.olddriver.view.fragment.main.MainSecFragment
+import com.gpc.olddriver.view.fragment.main.MainThirFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -41,13 +41,14 @@ class MainActivity : BaseFragmentActivity() {
     override fun configView() {
         mMainAdapter = MainAdapter(supportFragmentManager)
         viewpagerMain.adapter = mMainAdapter
+        viewpagerMain.offscreenPageLimit = 2
         tabMain.setupWithViewPager(viewpagerMain)
 
         mTabList?.forEachIndexed { index, s ->
             when {
-                index == 0 -> mMainAdapter?.addFragment(s, MainFirFragment.newInstance())
-                index == 1 -> mMainAdapter?.addFragment(s, MainSecFragment.newInstance())
-                index == 2 -> mMainAdapter?.addFragment(s, MainThirFragment.newInstance())
+                index == 0 -> mMainAdapter?.addFragment(s, MainFirFragment.newInstance(s))
+                index == 1 -> mMainAdapter?.addFragment(s, MainSecFragment.newInstance(s))
+                index == 2 -> mMainAdapter?.addFragment(s, MainThirFragment.newInstance(s))
             }
         }
     }

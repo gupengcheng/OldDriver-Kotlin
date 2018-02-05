@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.gpc.olddriver.utils.LogUtil
 import com.umeng.analytics.MobclickAgent
 
 /**
@@ -16,12 +17,14 @@ abstract class BaseFragment : Fragment() {
     var mContext: Context? = null
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        LogUtil.instance.e(TAG,"onCreateView")
         val view = inflater?.inflate(getLayoutId(), container, false)
         return view
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        LogUtil.instance.e(TAG,"onViewCreated")
         mContext = context
         initParentData()
         configView()
@@ -30,16 +33,19 @@ abstract class BaseFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        LogUtil.instance.e(TAG,"onDestroyView")
         cancelRequestServer()
     }
 
     override fun onResume() {
         super.onResume()
+        LogUtil.instance.e(TAG,"onResume")
         MobclickAgent.onPageStart(TAG)
     }
 
     override fun onPause() {
         super.onPause()
+        LogUtil.instance.e(TAG,"onPause")
         MobclickAgent.onPageEnd(TAG)
     }
 

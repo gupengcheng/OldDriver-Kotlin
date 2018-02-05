@@ -7,9 +7,9 @@ apply plugin: 'kotlin-android-extensions'
 Properties props = new Properties()
 def propFile = file('../my.properties')   //pay attention to the path
 def umengAppKey
-if (propFile.canRead()){
+if (propFile.canRead()) {
     props.load(new FileInputStream(propFile))
-    if (props!=null && props.containsKey('umeng.appkey')) {
+    if (props != null && props.containsKey('umeng.appkey')) {
         umengAppKey = props['umeng.appkey']
     }
 }
@@ -27,8 +27,8 @@ android {
         buildConfigField "boolean", "LOG_DEBUG", "true"
 
         manifestPlaceholders = [
-                UMENG_APPKEY: umengAppKey,
-                UMENG_CHANNEL_ID:"google_play"
+                UMENG_APPKEY    : umengAppKey,
+                UMENG_CHANNEL_ID: "google_play"
         ]
     }
     buildTypes {
@@ -55,5 +55,13 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // UMeng统计
     compile 'com.umeng.analytics:analytics:latest.integration'
+    // TabLayout 等
     implementation 'com.android.support:design:26.1.0'
+    // 网络框架Retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    // 图片加载框架
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    // RxJava
+    compile "io.reactivex.rxjava2:rxjava:2.1.9"
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
 }

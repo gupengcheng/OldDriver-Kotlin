@@ -27,7 +27,6 @@ class FirItemAdapter(val imgList: ArrayList<String>) : RecyclerView.Adapter<FirI
     }
 
     override fun getItemCount(): Int {
-        LogUtil.instance.e("FirItemAdapter","getItemCount ${imgList.size}")
         return imgList.size
     }
 

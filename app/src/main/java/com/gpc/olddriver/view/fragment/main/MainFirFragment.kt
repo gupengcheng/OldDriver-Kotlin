@@ -33,8 +33,7 @@ class MainFirFragment : BaseFragment() {
 
     var tabList: ArrayList<String>? = null
 
-    val fragmentMap: HashMap<String, BaseFragment>
-        get() = HashMap()
+    val fragmentMap: HashMap<String, BaseFragment> = HashMap()
 
     override val TAG: String
         get() = "关注"
@@ -94,15 +93,17 @@ class MainFirFragment : BaseFragment() {
         if (baseFragment != null && !baseFragment.isAdded) {
             LogUtil.instance.e(TAG, "showFragment add baseFragment")
             fragmentTransaction.add(R.id.layContainer, baseFragment)
-            fragmentTransaction.show(baseFragment)
         }
         LogUtil.instance.e(TAG, "showFragment add baseFragment ${baseFragment!!.isAdded}")
         hideOtherFragment(fragmentTransaction, baseFragment)
+        fragmentTransaction.show(baseFragment)
         fragmentTransaction.commitAllowingStateLoss()
     }
 
     fun hideOtherFragment(fragmentTransaction: FragmentTransaction, baseFragment: BaseFragment?) {
+        LogUtil.instance.e(TAG,"fragmentMap size = ${fragmentMap.size}")
         fragmentMap.entries.forEachIndexed { index, mutableEntry ->
+            LogUtil.instance.e(TAG,"hashMap item is ${mutableEntry.value} baseFragment is $baseFragment | base!=item is ${baseFragment != mutableEntry.value}")
             if (baseFragment != null && baseFragment != mutableEntry.value) {
                 fragmentTransaction.hide(mutableEntry.value)
             }
